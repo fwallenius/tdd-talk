@@ -1,11 +1,9 @@
 package se.wallenius;
 
 import se.wallenius.exceptions.BadStateException;
-import se.wallenius.exceptions.FileOpenException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,8 +11,7 @@ import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class BadImplementation implements TextFileCalculator {
-
+public class HardToTestImplementation implements TextFileCalculator {
 
     private Path currentPath;
     private Boolean readyToRead = false;
@@ -75,12 +72,9 @@ public class BadImplementation implements TextFileCalculator {
 
     private Operation parseOperator(String line) {
         switch (line) {
-            case "+":
-                return Operation.ADD;
-            case "-":
-                return Operation.SUBTRACT;
-            case "*":
-                return Operation.MULTIPLY;
+            case "+": return Operation.ADD;
+            case "-": return Operation.SUBTRACT;
+            case "*": return Operation.MULTIPLY;
         }
 
         return null; // Can't happen since input is first validated.
@@ -98,12 +92,9 @@ public class BadImplementation implements TextFileCalculator {
         Integer number = Integer.parseInt(inputNumber, 10);
         
         switch (nextOperation) {
-            case ADD:
-                return currentSum + number;
-            case SUBTRACT:
-                return currentSum - number;
-            case MULTIPLY:
-                return currentSum * number;
+            case ADD:       return currentSum + number;
+            case SUBTRACT:  return currentSum - number;
+            case MULTIPLY:  return currentSum * number;
         }
 
         return null; // Can't happen since input is first validated.
