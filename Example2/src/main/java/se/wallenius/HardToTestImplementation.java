@@ -52,12 +52,10 @@ public class HardToTestImplementation implements TextFileCalculator {
                 if (expectingNumber && isValidNumber(line)) {
                     sum = doTheMath(operation, sum, line);
                     expectingNumber = false;
-                }
-                else if (!expectingNumber && isValidOperation(line)) {
+                } else if (!expectingNumber && isValidOperation(line)) {
                     operation = parseOperator(line);
                     expectingNumber = true;
-                }
-                else {
+                } else {
                     Logger.getLogger(this.getClass().getName()).log(Level.INFO, "Skipping line: " + line);
                 }
 
@@ -72,9 +70,12 @@ public class HardToTestImplementation implements TextFileCalculator {
 
     private Operation parseOperator(String line) {
         switch (line) {
-            case "+": return Operation.ADD;
-            case "-": return Operation.SUBTRACT;
-            case "*": return Operation.MULTIPLY;
+            case "+":
+                return Operation.ADD;
+            case "-":
+                return Operation.SUBTRACT;
+            case "*":
+                return Operation.MULTIPLY;
         }
 
         return null; // Can't happen since input is first validated.
@@ -90,16 +91,19 @@ public class HardToTestImplementation implements TextFileCalculator {
 
     private Integer doTheMath(Operation nextOperation, Integer currentSum, String inputNumber) {
         Integer number = Integer.parseInt(inputNumber, 10);
-        
+
         switch (nextOperation) {
-            case ADD:       return currentSum + number;
-            case SUBTRACT:  return currentSum - number;
-            case MULTIPLY:  return currentSum * number;
+            case ADD:
+                return currentSum + number;
+            case SUBTRACT:
+                return currentSum - number;
+            case MULTIPLY:
+                return currentSum * number;
         }
 
         return null; // Can't happen since input is first validated.
     }
-    
+
     private BufferedReader getReaderForPath(Path path) throws IOException {
         return Files.newBufferedReader(currentPath, Charset.defaultCharset());
     }

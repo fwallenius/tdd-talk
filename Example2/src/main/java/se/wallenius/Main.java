@@ -8,6 +8,7 @@ public class Main {
 
         TextFileCalculator calculator = new EasyToTestImplementation(new DefaultFileReader());
         calculator.open(System.getProperty("user.dir") + "/exampleInput1.txt");
+
         int result = calculator.parseAndCalculateResult();
 
         System.out.println("Result: " + result);
